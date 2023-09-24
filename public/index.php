@@ -24,6 +24,15 @@ $empresas = $empresa->all('id,nome, cnpj,data_abertura, endereco');
 </head>
 
 <body>
+    <?php 
+    session_start();
+    ob_start();
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+        session_destroy();
+    }
+    ?>
     <header>
         <h1>Listar e Cadastrar</h1>
     </header>

@@ -43,7 +43,22 @@ abstract class Model{
             $query .= ':'. implode(',:', array_keys($entity->getAttributes())).')' ;
 
             $prepare = $connection->prepare($query);
-            return $prepare->execute($entity->getAttributes());
+           $result= $prepare->execute($entity->getAttributes());
+            session_start();
+            ob_start();
+           if($result){
+                $_SESSION['msg'] = " 
+							<div id='alert' class='alert alert-success' style='font-family:Montserrat; font: 10pt Verdana, Geneva, sans-serif;'>							
+								Empresa cadastrado com sucesso!
+							</div>
+							
+								";
+                header("Location: index.php");
+
+                //$_SESSION['message']= "empresa cadastrado com sucesso";
+           }
+
+            //return $prepare->execute($entity->getAttributes());
 
             //var_dump($query);
         } catch (\PDOException $th) {

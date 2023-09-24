@@ -8,13 +8,9 @@ require '../vendor/autoload.php';
 require "../app/database/Connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // $nome = $_POST["nome"];
-    // $email = $_POST["cnpj"];
-    // $data = "now()";
-    // $endereco = $_POST["endereco"];
+
     $dataAtual = new DateTime();
     $dataFormatada = date_format($dataAtual, 'Y-m-d');
-    // echo "Formato 2: $dataFormatada2<br>";
 
     $empresa = new Empresa;
     $empresaEntity = new EmpresaEntity;
@@ -23,15 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $empresaEntity->data_abertura = $dataFormatada;
     $empresaEntity->endereco = $_POST['endereco'];
     $empresas = $empresa->create($empresaEntity);
-    // echo "<pre>";
-    // var_dump($empresas);
-    // echo "</pre>";
-
-    // // Agora você pode fazer o que quiser com os dados, por exemplo, exibi-los:
-    // echo "<h2>Dados Recebidos:</h2>";
-    // echo "Nome: " . $nome . "<br>";
-    // echo "E-mail: " . $email . "<br>";
-    // Lembre-se de não exibir senhas em um ambiente de produção.
 }
 
 
@@ -72,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="endereco" id="endereco" required><br><br>
 
             <input type="submit" name="submit" value="Cadastrar">
+            <p><a href="javascript:history.go(-1)">Voltar</a></p>
         </form>
 
     </main>
