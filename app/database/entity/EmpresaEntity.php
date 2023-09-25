@@ -7,7 +7,7 @@ class EmpresaEntity extends Entity{
    public function CNPJIsValid()
     {
         if(strlen($this->attributes['cnpj']) != 14 ){
-            throw new Exception("CNPJ does not exist");
+            throw new Exception("CNPJ invalid");
         }
         return $this->attributes['cnpj'];
        ;

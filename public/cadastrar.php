@@ -39,13 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Cadastrar Empresa</h1>
     </header>
     <main>
-        <!-- <?php
-                //var_dump($_REQUEST);//é uma junção de $_GET,$_POST e $_COOKIE
-                // $nome = $_GET["nome"] ?? "sem nome";
-                // $sobrenome = $_GET["sobrenome"] ?? "desconhecido";
-                // echo "<p>é uma prazer te conhecer $nome $sobrenome Bem-vindo ao meu site</p>";
-                ?>
-        <p><a href="javascript:history.go(-1)">Voltar</a></p> -->
 
         <h2>Cadastro</h2>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">

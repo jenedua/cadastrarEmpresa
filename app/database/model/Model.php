@@ -1,12 +1,13 @@
 <?php 
 namespace app\database\model;
 
-use app\database\Connection;
+//use app\database\Connection;
 use app\database\entity\Entity;
-//use Connection;
+use Connection;
 use Exception;
 use PDO;
 use ReflectionClass;
+
 
 abstract class Model{
     protected string $table;
@@ -26,7 +27,7 @@ abstract class Model{
     public function all(string $fields = '*')
     {
         try {
-            $connection = \Connection::getConnection();
+            $connection = Connection::getConnection();
             $query = "select {$fields} from {$this->table}";
             $stmt = $connection->query($query);
             return $stmt->fetchAll(PDO::FETCH_CLASS, $this->getEntity());
@@ -37,15 +38,15 @@ abstract class Model{
     public function create(Entity $entity)
     {
         try {
-            $connection = \Connection::getConnection();
+            $connection = Connection::getConnection();
             $query = "insert into {$this->table} (";
             $query .= implode(',', array_keys($entity->getAttributes())) .') Values(';
             $query .= ':'. implode(',:', array_keys($entity->getAttributes())).')' ;
 
             $prepare = $connection->prepare($query);
            $result= $prepare->execute($entity->getAttributes());
-            session_start();
-            ob_start();
+             session_start();
+
            if($result){
                 $_SESSION['msg'] = " 
 							<div id='alert' class='alert alert-success' style='font-family:Montserrat; font: 10pt Verdana, Geneva, sans-serif;'>							
